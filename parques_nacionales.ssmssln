@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 19.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts_entrega_5", "scripts_entrega_5", "{85AC2D09-B120-4FE4-B064-D8A04DAE74A0}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\OneDrive\Escritorio\TpBBDD\1_tablas_parques_nac.sql = ..\..\..\OneDrive\Escritorio\TpBBDD\1_tablas_parques_nac.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0B844B6-FB34-49BB-AB70-55A70CC1FE74}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5941FA6D-19E3-4C66-851A-E7C7743CBAE5}
+	EndGlobalSection
+EndGlobal
