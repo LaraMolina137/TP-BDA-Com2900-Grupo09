@@ -119,7 +119,7 @@ GO
 ========================================================= */
 CREATE OR ALTER PROCEDURE concesiones.sp_EmpresaConcesionaria_Alta
     @nombre VARCHAR(150),
-    @telefono VARCHAR(30) = NULL,
+    @telefono VARCHAR(50) = NULL,
     @id_empresa_out INT OUTPUT
 AS
 BEGIN
@@ -143,7 +143,7 @@ GO
 CREATE OR ALTER PROCEDURE concesiones.sp_EmpresaConcesionaria_Modificar
     @id_empresa INT,
     @nombre VARCHAR(150),
-    @telefono VARCHAR(30) = NULL
+    @telefono VARCHAR(50) = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -642,10 +642,31 @@ BEGIN
 
     IF @errores <> N'' THROW 50025, @errores, 1;
 
-    INSERT INTO rrhh.Habilitacion(id_guia, descripcion, valida_desde, valida_hasta)
-    VALUES (@id_guia, LTRIM(RTRIM(@descripcion)), @valida_desde, @valida_hasta);
+    DECLARE @nuevo_nro INT;
 
-    SET @nro_habilitacion_out = SCOPE_IDENTITY();
+    SELECT @nuevo_nro =
+        ISNULL(MAX(nro_habilitacion),0) + 1
+    FROM rrhh.Habilitacion
+    WHERE id_guia = @id_guia;
+
+    INSERT INTO rrhh.Habilitacion
+    (
+        id_guia,
+        nro_habilitacion,
+        descripcion,
+        valida_desde,
+        valida_hasta
+    )
+    VALUES
+    (
+        @id_guia,
+        @nuevo_nro,
+        LTRIM(RTRIM(@descripcion)),
+        @valida_desde,
+        @valida_hasta
+    );
+
+    SET @nro_habilitacion_out = @nuevo_nro;
 END;
 GO
 

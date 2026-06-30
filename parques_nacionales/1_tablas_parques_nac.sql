@@ -64,8 +64,10 @@ BEGIN
         nombre VARCHAR(100) NOT NULL,
         descripcion VARCHAR(150) NOT NULL,
         tipo VARCHAR(50) NOT NULL,
-        ubicacion VARCHAR(200) NOT NULL,
+        ubicacion VARCHAR(200) NULL,
         superficie DECIMAL(12,2) NULL,
+
+        CONSTRAINT uq_parque_nombre UNIQUE (nombre),
 
         CONSTRAINT chk_parque_superficie
             CHECK (superficie IS NULL OR superficie >= 0)
@@ -81,8 +83,8 @@ IF OBJECT_ID('concesiones.EmpresaConcesionaria', 'U') IS NULL
 BEGIN
     CREATE TABLE concesiones.EmpresaConcesionaria (
         id_empresa INT IDENTITY(1,1) PRIMARY KEY,
-        nombre VARCHAR(150) NOT NULL,
-        telefono VARCHAR(30) NULL
+        nombre VARCHAR(150) NOT NULL UNIQUE,
+        telefono VARCHAR(50) NULL  
     );
 END;
 GO
@@ -201,8 +203,8 @@ IF OBJECT_ID('rrhh.Guia', 'U') IS NULL
 BEGIN
     CREATE TABLE rrhh.Guia (
         id_guia INT IDENTITY(1,1) PRIMARY KEY,
-        dni VARCHAR(20) NOT NULL,
-        legajo VARCHAR(50) NOT NULL,
+        dni VARCHAR(20) NULL,
+        legajo VARCHAR(50) NOT NULL UNIQUE,
         titulo VARCHAR(100) NULL,
         nombre VARCHAR(100) NOT NULL,
         especialidad VARCHAR(100) NULL
@@ -214,7 +216,7 @@ IF OBJECT_ID('rrhh.Habilitacion', 'U') IS NULL
 BEGIN
     CREATE TABLE rrhh.Habilitacion (
         id_guia INT NOT NULL,
-        nro_habilitacion INT IDENTITY(1,1) NOT NULL,
+        nro_habilitacion INT NOT NULL,  --sin idendtity
         descripcion VARCHAR(150) NOT NULL,
         valida_desde DATE NOT NULL,
         valida_hasta DATE NULL,
